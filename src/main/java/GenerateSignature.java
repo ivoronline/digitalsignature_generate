@@ -1,6 +1,8 @@
 import java.io.*;
 import java.security.*;
+import java.security.spec.PKCS8EncodedKeySpec;
 
+//This Class generates Private Key and stores it into File
 class GenerateSignature {
 
   public static void main(String[] args) {
@@ -42,6 +44,12 @@ class GenerateSignature {
       FileOutputStream  publicKeyFile  = new FileOutputStream("src/main/resources/PublicKey.txt");
                         publicKeyFile.write(publicKeyBytes);
                         publicKeyFile.close();
+
+      //SAVE PRIVATE KEY TO FILE
+      byte[]            privateKeyBytes = publicKey.getEncoded();
+      FileOutputStream  privateKeyFile  = new FileOutputStream("src/main/resources/PrivateKey.txt");
+                        privateKeyFile.write(privateKeyBytes);
+                        privateKeyFile.close();
 
     } catch (Exception e) {
       System.err.println("Caught exception " + e.toString());
